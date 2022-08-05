@@ -6,7 +6,7 @@ plugins {
 group = 'reengineering.ddd'
 version = '0.1.0'
 
-sourceCompatibility = '18'
+sourceCompatibility = '17'
 
 repositories {
     mavenCentral()
