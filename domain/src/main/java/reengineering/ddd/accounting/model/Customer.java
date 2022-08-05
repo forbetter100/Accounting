@@ -36,6 +36,8 @@ public class Customer implements Entity<String, CustomerDescription> {
         return description;
     }
 
+    // 《分析模式》关于关联关系有提到，直接返回field是违背oo思想的，因而getter需要给出只读的数据，方式要么是收窄了的代理，要么是copy。这里选择的是前者
+    // 对于description这种record对象，本身就是final的，就不需要什么特殊处理。
     public HasMany<String, SourceEvidence<?>> sourceEvidences() {
         return sourceEvidences;
     }
