@@ -45,6 +45,12 @@ public class SourceEvidencesApi {
                 p -> sourceEvidences(info).queryParam("page", p).build(customer.getIdentity()));
     }
 
+    /**
+     * 注by wj: http rpc风格会在customer api暴露一个add api，但restful的风格，是在资源本身去暴露api
+     * 也就是说：一致性是以聚合根为中心设计的模型驱动，而api是以内部资源被暴露的风格设计的，这其实也不冲突：
+     * 因为我们暴露的资源不是技术性的，而是业务上明确存在的实体，只是这些实体被聚合根这个实体管控着而已，而不代表这些实体需要对外隐瞒。
+     * 并且，这个具体的内部资源，其实在uri上已经表达了对象网，因此并不是暴露全局对象。
+     */
     @POST
     public Response create(String json, @Context UriInfo info) {
         SourceEvidence evidence = customer.add(reader.read(json)
