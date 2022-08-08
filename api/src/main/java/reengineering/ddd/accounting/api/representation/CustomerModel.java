@@ -32,7 +32,7 @@ public class CustomerModel extends RepresentationModel<CustomerModel> {
         add(Link.of(sourceEvidences(info).build(customer.getIdentity()).getPath(), "source-evidences"));
         /**
          * 注by wj:这里并不是直接将CustomerAccounts这个关联对象的link给出，而是将CustomerAccounts的内容给出
-         * CustomerAccounts的link，已经在CustomerApi里给出了
+         * 我认为这样做的原因，单纯是想提前把对象的详细暴露，从而展示api层模型和领域模型的完备程度差异。
          */
         customer.accounts().findAll().forEach(a ->
                 add(Link.of(accountTransactions(info).build(customer.getIdentity(), a.getIdentity()).getPath(), "account-" + a.getIdentity() + "-transactions")));
