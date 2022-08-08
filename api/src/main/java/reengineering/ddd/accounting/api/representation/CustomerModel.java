@@ -30,6 +30,10 @@ public class CustomerModel extends RepresentationModel<CustomerModel> {
         this.description = customer.getDescription();
         add(Link.of(customer(info).build(customer.getIdentity()).getPath(), "self"));
         add(Link.of(sourceEvidences(info).build(customer.getIdentity()).getPath(), "source-evidences"));
+        /**
+         * 注by wj:这里并不是直接将CustomerAccounts这个关联对象的link给出，而是将CustomerAccounts的内容给出
+         * CustomerAccounts的link，已经在CustomerApi里给出了
+         */
         customer.accounts().findAll().forEach(a ->
                 add(Link.of(accountTransactions(info).build(customer.getIdentity(), a.getIdentity()).getPath(), "account-" + a.getIdentity() + "-transactions")));
     }
