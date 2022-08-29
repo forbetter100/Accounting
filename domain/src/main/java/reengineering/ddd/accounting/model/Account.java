@@ -48,6 +48,10 @@ public class Account implements Entity<String, AccountDescription> {
         Transaction add(Account account, SourceEvidence<?> evidence, TransactionDescription description);
     }
 
+    /**
+     * remark by wj:
+     * change既是作为一个command对象，也是作为一个update的结果
+     */
     public record AccountChange(Amount total) {
     }
 }
